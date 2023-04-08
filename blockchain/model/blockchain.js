@@ -1,0 +1,3 @@
+
+global.chain = [];
+global.pendingTransactions = [];
