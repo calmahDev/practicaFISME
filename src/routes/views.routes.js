@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { findBlock } from './blockExplorer.routes.js'
+import { findBlock } from '../controller/blockExplorer.controller.js'
 
 const routerViews = Router()
 

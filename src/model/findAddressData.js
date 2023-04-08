@@ -1,3 +1,5 @@
+import "./blockchain.js"
+
 export const findAddressData = function(address) {
     // Verificar si se han proporcionado los parámetros de entrada adecuados
     if (!address ) {
@@ -7,7 +9,7 @@ export const findAddressData = function(address) {
     const addressTransactions = [];
   
     try {
-      glocal.chain.forEach(block => {
+      global.chain.forEach(block => {
         if (!block.transactions || !Array.isArray(block.transactions)) {
           throw new Error('Invalid block structure');
         }

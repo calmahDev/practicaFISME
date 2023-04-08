@@ -1,4 +1,4 @@
-import  "../model/blockchain.js"
+import  "./blockchain.js"
 export function addTransactionToPendingTransactions (transactionObj) {
 	if (!transactionObj) {
 		throw new Error('Transaction object is required');
