@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mostrar transacciones</title>
+  </head>
+  <body>
+    <h1>Últimas transacciones de la blockchain</h1>
+    <div id="transactions"></div>
+    <button id="loadMore">Cargar más</button>
+    <script>
+      const transactionsDiv = document.getElementById("transactions");
+      const loadMoreButton = document.getElementById("loadMore");
+      let startIndex = 0;
+      const transactionsPerPage = 2;
+
+      function showTransactions(transactions) {
+        transactionsDiv.innerHTML += transactions
+          .map(
+            (transaction) =>
+                                     `<p>Emitido por:</p>
+                                      <p align="center">${transaction.sender}</p>
+                                      
+                                      <p>Otorgado a:</p>
+                                      <p align="center">${transaction.recipient}</p>
+
+                                      <p>A razon de:</p>
+                                      <p align="center">${transaction.amount}</p>
+
+                                      <p>Certificado ID</p>
+                                      <p align="center">${transaction.transactionId}</p>
+                                     <hr>`
+          )
+          .join("");
+      }
+
+      function loadTransactions() {
+        fetch("/blockchain")
+          .then((response) => response.json())
+          .then((data) => {
+            const transactions = data.chain
+              .map((block) => block.transactions)
+              .flat()
+              .slice(startIndex, startIndex + transactionsPerPage);
+            showTransactions(transactions);
+            if (transactions.length < transactionsPerPage) {
+              loadMoreButton.disabled = true;
+            }
+            startIndex += transactionsPerPage;
+          })
+          .catch((error) => console.error(error));
+      }
+
+      loadTransactions();
+      loadMoreButton.addEventListener("click", loadTransactions);
+    </script>
+  </body>
+</html>

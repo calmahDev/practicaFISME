@@ -34,12 +34,6 @@
 
     <ul id="transactions-list"></ul>
     <script>
-      if (!amount || !sender || !recipient) {
-  const message = 'Faltan parámetros'
-  alert(message)
-}
-
-
       const transactionsList = document.getElementById("transactions-list");
       fetch("/blockchain")
         .then(response => response.json())
@@ -65,6 +59,7 @@
 
                                       <p>Certificado ID</p>
                                       <p align="center">${transaction.transactionId}</p>
+                                      <hr>
                                     </div>`;
             transactionsList.appendChild(listItem);
           });
