@@ -7,7 +7,7 @@ import { createNewBlock } from "../model/createNewBlock.js"
 
 export const transactionBroadcast = (req, res) => {
   if (!req.body.amount || !req.body.sender || !req.body.recipient) {
-    return res.status(400).json({ message: 'Faltan parámetros' })
+    return res.status(400).json({ message: 'parameters are missing in /transaction/broadcast' })
   }
   if (global.chain.length === 0) {
     createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)

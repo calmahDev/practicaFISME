@@ -4,7 +4,7 @@ import { createNewBlock } from "../model/createNewBlock.js"
 
 export const registerNodesBulk = (req, res) => {
   if (!req.body.allNetworkNodes) {
-    return res.status(400).json({ message: 'Faltan parámetros' })
+    return res.status(400).json({ message: 'parameters are missing in /register-node-bulk' })
   }
   if (global.chain.length === 0) {
     createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)

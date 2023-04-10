@@ -1,7 +1,7 @@
 import  "./blockchain.js"
 export function addTransactionToPendingTransactions (transactionObj) {
 	if (!transactionObj) {
-		throw new Error('Transaction object is required');
+		throw new Error('parameters are missing in addTransactionToPendingTransactions.js');
 	}
 
 	global.pendingTransactions.push(transactionObj);

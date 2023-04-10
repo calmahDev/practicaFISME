@@ -5,7 +5,7 @@ import { createNewBlock } from "../model/createNewBlock.js"
 
 export const registerNodeAndBroadcastNode = (req, res) => {
   if (!req.body.newNodeUrl) {
-    return res.status(400).json({ message: 'Faltan parámetros' })
+    return res.status(400).json({ message: 'Faltan parámetros /register-and-broadcast-nodes' })
   }
   if (global.chain.length === 0) {
     createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)

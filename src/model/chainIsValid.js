@@ -2,7 +2,7 @@ import {hashBlock} from "./hashBlock.js"
 
 export const  chainIsValid= (blockchain)=> {
 	if (!Array.isArray(blockchain) || blockchain.length === 0) {
-		throw new Error('Invalid blockchain format');
+		throw new Error('parameters are missing in chainIsValid.js');
 	}
 
 	let validChain = true;

@@ -5,7 +5,7 @@ import { getLastBlock } from "../model/getLastBlock.js"
 
 export const receiveNewBlock = (req, res) => {
   if (!req.body.newBlock) {
-    return res.status(400).json({ message: 'Faltan parámetros' })
+    return res.status(400).json({ message: 'Faltan parámetros in /receive-new-block ' })
   }
   if (global.chain.length === 0) {
     createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)
