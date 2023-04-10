@@ -1,8 +1,12 @@
 import { Router } from 'express'
-import { findBlock } from '../controller/blockExplorer.controller.js'
+import { findBlock } from '../controller/findRecord.controller.js'
+import { createNewRecord } from '../controller/createNewRecord.controller.js'
 
 const routerViews = Router()
 
-routerViews.get('/ruta', findBlock)
+routerViews.get('/find-block', findBlock)
+routerViews.get('/create-new-record', createNewRecord)
+
+
 
 export default routerViews

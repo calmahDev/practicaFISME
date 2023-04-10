@@ -2,8 +2,16 @@ import requestPromise from "request-promise"
 import { networkNodes } from "../app.js"
 import { addTransactionToPendingTransactions } from "../model/addTransactionToPendingTransactions.js"
 import { createNewTransaction } from "../model/createNewTransaction.js"
+import { nonceGenesis,hashGenesis,previousHashGenesis } from "../model/blockGenesis.js"
+import { createNewBlock } from "../model/createNewBlock.js"
 
 export const transactionBroadcast = (req, res) => {
+  if (!req.body.amount || !req.body.sender || !req.body.recipient) {
+    return res.status(400).json({ message: 'Faltan parámetros' })
+  }
+  if (global.chain.length === 0) {
+    createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)
+  }
   const newTransaction = createNewTransaction(req.body.amount, req.body.sender, req.body.recipient)
   addTransactionToPendingTransactions(newTransaction)
 
@@ -20,6 +28,6 @@ export const transactionBroadcast = (req, res) => {
 
   Promise.all(requestPromises)
     .then(data => {
-      res.json({ note: 'Transaction created and broadcast successfully.' })
+      res.redirect('/mine')
     })
 }

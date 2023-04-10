@@ -1,7 +1,7 @@
-import "../model/blockchain.js"
 import { createNewBlock } from "../model/createNewBlock.js"
-import { previousHashGenesis, hashGenesis, nonceGenesis } from "../model/blockGenesis.js"
 import { currentNodeUrl, networkNodes } from "../app.js"
+import { previousHashGenesis, hashGenesis, nonceGenesis } from "../model/blockGenesis.js"
+import "../model/blockchain.js"
 
 export const blockchain = (req, res) => {
   if (global.chain.length === 0) {

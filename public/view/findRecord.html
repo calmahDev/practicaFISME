@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Buscar transacciones en la blockchain</title>
+    <style>
+      .resultados-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+      }
+
+      .resultados-container h2 {
+        margin: 0;
+      }
+
+      .resultados-container p {
+        margin: 0;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Buscar transacciones en la blockchain</h1>
+    <p>
+      Introduce un dato incompleto para buscar transacciones:
+      <br />
+      Dato incompleto:
+      <input type="text" id="dato" />
+      <br />
+      <button onclick="buscarTransacciones()">Buscar</button>
+    </p>
+    <div id="tablaResultados"></div>
+
+    <script>
+      function buscarTransacciones() {
+        const dato = document.getElementById("dato").value.toLowerCase();
+
+        const blockchainEndpoint = "http://localhost:3001/blockchain";
+
+        fetch(blockchainEndpoint)
+          .then((response) => response.json())
+          .then((data) => {
+            const transaccionesCoincidentes = [];
+
+            data.chain.forEach((bloque) => {
+              bloque.transactions.forEach((transaccion) => {
+                if (
+                  transaccion.amount.toLowerCase().includes(dato) ||
+                  transaccion.sender.toLowerCase().includes(dato) ||
+                  transaccion.recipient.toLowerCase().includes(dato)
+                ) {
+                  transaccionesCoincidentes.push(transaccion);
+                }
+              });
+            });
+
+            if (transaccionesCoincidentes.length === 0) {
+              document.getElementById(
+                "tablaResultados"
+              ).innerHTML = `<p>No se encontraron transacciones con "${dato}" en amount, sender o recipient.</p>`;
+            } else {
+              let tablaResultados = "";
+
+              transaccionesCoincidentes.forEach((transaccion, index) => {
+                const colorFila = index % 2 === 0 ? "#ffffff" : "#f2f2f2";
+
+                tablaResultados += `<div class="resultados-container" style="background-color: ${colorFila}">
+                                      <h2>Amount</h2>
+                                      <p align="right">${transaccion.amount}</p>
+                                      <h2>Sender</h2>
+                                      <p align="right">${transaccion.sender}</p>
+                                      <h2>Recipient</h2>
+                                      <p align="right">${transaccion.recipient}</p>
+                                      <h2>Transaction ID</h2>
+                                      <p align="right">${transaccion.transactionId}</p>
+                                    </div>`;
+              });
+
+              document.getElementById("tablaResultados").innerHTML = tablaResultados;
+            }
+          });
+      }
+    </script>
+  </body>
+</html>

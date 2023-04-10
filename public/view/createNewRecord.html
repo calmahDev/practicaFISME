@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Últimas 5 transacciones de mi endpoint /blockchain</title>
+    <style>
+      #transactions-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      #transactions-list li {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Make a Transaction</h2>
+	<form action="/transaction/broadcast" method="POST">
+    
+    <label for="sender">Emitido por :</label>
+    <input type="text" id="sender" name="sender"><br><br>
+    
+		<label for="recipient">Otorgado a :</label>
+		<input type="text" id="recipient" name="recipient"><br><br>
+
+		<label for="amount">A razon de :</label><br>
+    <textarea id="amount" name="amount" style="width: 400px; height: 100px;"></textarea><br><br>
+
+    <button id="myButton">Crear Certificado</button>
+	</form>
+
+    <h1>Últimas 5 transacciones de mi endpoint /blockchain</h1>
+
+    <ul id="transactions-list"></ul>
+    <script>
+      if (!amount || !sender || !recipient) {
+  const message = 'Faltan parámetros'
+  alert(message)
+}
+
+
+      const transactionsList = document.getElementById("transactions-list");
+      fetch("/blockchain")
+        .then(response => response.json())
+        .then(data => {
+          const transactions = data.chain
+            .slice(Math.max(data.chain.length - 5, 0))
+            .map(block => block.transactions)
+            .flat();
+          transactions.forEach(transaction => {
+            const listItem = document.createElement("li");
+            const index = transactions.indexOf(transaction);
+            const colorFila = index % 2 === 0 ? "#ffffff" : "#f2f2f2";
+
+            listItem.innerHTML = `<div class="resultados-container" style="background-color: ${colorFila}">
+                                      <p>Emitido por:</p>
+                                      <p align="center">${transaction.sender}</p>
+                                      
+                                      <p>Otorgado a:</p>
+                                      <p align="center">${transaction.recipient}</p>
+
+                                      <p>A razon de:</p>
+                                      <p align="center">${transaction.amount}</p>
+
+                                      <p>Certificado ID</p>
+                                      <p align="center">${transaction.transactionId}</p>
+                                    </div>`;
+            transactionsList.appendChild(listItem);
+          });
+        });
+    </script>
+  </body>
+</html>

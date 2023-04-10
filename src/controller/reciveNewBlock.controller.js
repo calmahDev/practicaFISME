@@ -1,7 +1,15 @@
+import { nonceGenesis,hashGenesis,previousHashGenesis } from "../model/blockGenesis.js"
+import { createNewBlock } from "../model/createNewBlock.js"
 import "../model/blockchain.js"
 import { getLastBlock } from "../model/getLastBlock.js"
 
 export const receiveNewBlock = (req, res) => {
+  if (!req.body.newBlock) {
+    return res.status(400).json({ message: 'Faltan parámetros' })
+  }
+  if (global.chain.length === 0) {
+    createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)
+  }
   const newBlock = req.body.newBlock
   const lastBlock = getLastBlock()
   const correctHash = lastBlock.hash === newBlock.previousBlockHash

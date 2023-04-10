@@ -1,7 +1,13 @@
-// consensus
-import "../server.js"
+import { networkNodes } from "../app.js";
+import {chainIsValid} from "../model/chainIsValid.js"
+import requestPromise from "request-promise";
+import { previousHashGenesis, hashGenesis, nonceGenesis } from "../model/blockGenesis.js"
+import "../model/blockchain.js"
 
 export const consensus = (req, res) =>{
+	if (global.chain.length === 0) {
+		createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)
+	  }
 	const requestPromises = [];
 	networkNodes.forEach(networkNodeUrl => {
 		const requestOptions = {
@@ -28,17 +34,14 @@ export const consensus = (req, res) =>{
 			};
 		});
 		if (!newLongestChain || (newLongestChain && !chainIsValid(newLongestChain))) {
-			res.json({
-				note: 'Current chain has not been replaced.',
-				chain: global.chain
-			});
+			res.redirect('/create-new-record');
 		}
 		else {
-			global.chain = newLongestChain;
-			global.pendingTransactions = newPendingTransactions;
+			bitcoin.chain = newLongestChain;
+			bitcoin.pendingTransactions = newPendingTransactions;
 			res.json({
 				note: 'This chain has been replaced.',
-				chain: global.chain
+				chain: bitcoin.chain
 			});
 		}
 	});

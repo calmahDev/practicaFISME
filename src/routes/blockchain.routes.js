@@ -6,9 +6,8 @@ import { receiveNewBlock } from '../controller/reciveNewBlock.controller.js'
 import { mine } from '../controller/mine.controller.js'
 import { registerNode } from '../controller/registerNode.controller.js'
 import { registerNodesBulk } from '../controller/registerNodesBulk.controller.js'
-import { registerNodeAndBroadcastNode } from '../controller/registerAndBroadcastNode.controller.js'
-import { getBlock } from '../controller/findBlock.controller.js'
-import { getAddressDatas } from '../controller/findTransaction.controller.js'
+import { registerNodeAndBroadcastNode } from '../controller/registerAndBroadcastNode.controller.js' 
+import { consensus } from '../controller/consensus.controller.js'
 
 const routerBlock = Router()
 
@@ -20,7 +19,6 @@ routerBlock.get('/mine', mine)
 routerBlock.post('/register-node', registerNode)
 routerBlock.post('/register-nodes-bulk', registerNodesBulk)
 routerBlock.post('/register-and-broadcast-node', registerNodeAndBroadcastNode)
-routerBlock.get('/block/:blockHash', getBlock)
-routerBlock.get('/address/:address', getAddressDatas)
+routerBlock.get('/consensus', consensus)
 
 export default routerBlock

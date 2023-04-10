@@ -1,6 +1,6 @@
 import {hashBlock} from "./hashBlock.js"
 
-export function chainIsValid (blockchain) {
+export const  chainIsValid= (blockchain)=> {
 	if (!Array.isArray(blockchain) || blockchain.length === 0) {
 		throw new Error('Invalid blockchain format');
 	}
