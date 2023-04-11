@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Consultar IP</title>
+    <style>
+      #result {
+        background-color: lightblue;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>dirección del node actual</h1>
+    <div id="result"></div>
+    
+    <form id="register-form">
+      <label for="newNodeUrl">URL del Nuevo Nodo:</label>
+      <input type="text" id="newNodeUrl" name="newNodeUrl" required>
+      <br>
+      <button type="submit">Registrar</button>
+    </form>
+
+    <script>
+      // Hacer una solicitud a tu endpoint
+      fetch('/ip')
+        .then(response => response.text())
+        .then(ipAddress => {
+          // Mostrar la respuesta en la página
+          document.getElementById('result').innerHTML = ipAddress;
+        })
+        .catch(error => {
+          console.error('Error al obtener la dirección IP:', error);
+        });
+
+      
+
+      
+
+        const form = document.getElementById('register-form');
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const url = form.newNodeUrl.value;
+        fetch('/register-and-broadcast-node', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ newNodeUrl: url })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+      });
+    
+    </script>
+  </body>
+</html>

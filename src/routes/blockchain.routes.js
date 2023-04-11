@@ -8,6 +8,7 @@ import { registerNode } from '../controller/registerNode.controller.js'
 import { registerNodesBulk } from '../controller/registerNodesBulk.controller.js'
 import { registerNodeAndBroadcastNode } from '../controller/registerAndBroadcastNode.controller.js' 
 import { consensus } from '../controller/consensus.controller.js'
+import { ip } from '../controller/addNewNode.controller.js'
 
 const routerBlock = Router()
 
@@ -20,5 +21,7 @@ routerBlock.post('/register-node', registerNode)
 routerBlock.post('/register-nodes-bulk', registerNodesBulk)
 routerBlock.post('/register-and-broadcast-node', registerNodeAndBroadcastNode)
 routerBlock.get('/consensus', consensus)
+routerBlock.get('/ip', ip)
+
 
 export default routerBlock

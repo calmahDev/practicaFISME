@@ -17,7 +17,6 @@ export const registerNodeAndBroadcastNode = (req, res) => {
 
   const regNodesPromises = []
   networkNodes.forEach(networkNodeUrl => {
-    if (networkNodeUrl) {
       const requestOptions = {
         uri: `${networkNodeUrl}/register-node`,
         method: 'POST',
@@ -26,9 +25,7 @@ export const registerNodeAndBroadcastNode = (req, res) => {
       }
 
       regNodesPromises.push(requestPromise(requestOptions))
-    } else {
-      console.log('Error: networkNodeUrl is undefined or null')
-    }
+
 
   })
 
