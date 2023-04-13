@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bienvenido</title>
+    <style>
+        body{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          background-color: #30698C;
+        }
+        #div-body {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background-color: #0F3D59;
+          border-radius: 20px;
+          border: 5px solid #A6A6A6;
+          padding: 50px 2% 2% 2%;
+          width: 90%;
+          max-width: 900px;
+          position: relative;
+          overflow: auto;
+        }
+        h1{
+          color: #A6A6A6;
+        }
+        h2, p{
+          color: #F2F2F2;
+        }      
+        nav {
+          background-color: #333;
+          color: #fff;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+        }  
+        nav ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+        }
+        nav li {
+          margin-right: 20px;
+        }
+        nav li:last-child {
+          margin-right: 0;
+        }  
+        nav a {
+          color: #fff;
+          text-decoration: none;
+          padding: 10px;
+          display: block;
+        }  
+        nav a:hover {
+          background-color: #555;
+        }
+        @media screen and (max-width: 600px) {
+          #div-body {
+            padding: 20px;
+          }
+          nav {
+            position: static;
+          }
+          nav ul {
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
+          }
+          nav li {
+            margin-bottom: 1px;
+            display: inline-block;
+            width: auto;
+            margin-right: 10px;
+            font-size: 10px;
+          }
+        }  
+      </style>   
+  </head>
+  <body>
+    <div id="div-body">
+        <nav>
+            <ul>
+              <li><a href="/view-all-record">Inicio</a></li>
+              <li><a href="/create-new-record">Acerca de</a></li>
+              <li><a href="/add-new-node">Servicios</a></li>
+              <li><a href="/find-record">Contacto</a></li>
+            </ul>
+          </nav>
+        <div id="Content">
+            <h1 align="center">Gracias por Ingresar!</h1>
+            <p> Esta aplicacion es parte de una red Blockchain que tiene como finalidad la emision de certificados, lo primero que debes de hacer para pertenerce a esta red  es conectar tu ip con las demas. Dale clic al boton... </p>
+            <a href="./view/addNewNode.html"  >
+                <div style="text-align: center;">
+                    <button> INGRESAR </button>
+                  </div>
+                  
+            </a>
+        </div>
+    </div>
+  </body>
+</html>

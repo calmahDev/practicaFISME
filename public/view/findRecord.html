@@ -1,42 +1,113 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Buscar transacciones en la blockchain</title>
+    <meta charset="UTF-8">
+    <title>Consultar IP</title>
     <style>
-      .resultados-container {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 1rem;
+    body{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #30698C;
+    }
+    #div-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #0F3D59;
+      border-radius: 20px;
+      border: 5px solid #A6A6A6;
+      padding: 50px 2% 2% 2%;
+      width: 90%;
+      max-width: 900px;
+      position: relative;
+      overflow: auto;
+    }
+    h1{
+      color: #A6A6A6;
+    }
+    h2, p{
+      color: #F2F2F2;
+    }      
+    nav {
+      background-color: #333;
+      color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }  
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav li {
+      margin-right: 20px;
+    }
+    nav li:last-child {
+      margin-right: 0;
+    }  
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+    }  
+    nav a:hover {
+      background-color: #555;
+    }
+    @media screen and (max-width: 600px) {
+      #div-body {
+        padding: 20px;
       }
-
-      .resultados-container h2 {
-        margin: 0;
+      nav {
+        position: static;
       }
-
-      .resultados-container p {
-        margin: 0;
-        font-weight: bold;
+      nav ul {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
       }
-    </style>
+      nav li {
+        margin-bottom: 1px;
+        display: inline-block;
+        width: auto;
+        margin-right: 10px;
+        font-size: 10px;
+      }
+    }  
+  </style>   
   </head>
   <body>
-    <h1>Buscar transacciones en la blockchain</h1>
-    <p>
-      Introduce un dato incompleto para buscar transacciones:
-      <br />
-      Dato incompleto:
-      <input type="text" id="dato" />
-      <br />
-      <button onclick="buscarTransacciones()">Buscar</button>
-    </p>
-    <div id="tablaResultados"></div>
-
+    <div id="div-body">
+      <nav>
+        <ul>
+          <li><a href="/view-all-record">Inicio</a></li>
+          <li><a href="/create-new-record">Acerca de</a></li>
+          <li><a href="/add-new-node">Servicios</a></li>
+          <li><a href="/find-record">Contacto</a></li>
+        </ul>
+      </nav>
+      <h1>Buscar transacciones en la blockchain</h1>
+      <p>
+        Introduce un dato incompleto para buscar transacciones:
+        <br />
+        Dato incompleto:
+        <input type="text" id="dato" />
+        <br />
+        <button onclick="buscarTransacciones()">Buscar</button>
+      </p>
+      <div id="tablaResultados"></div>
+    </div>
     <script>
       function buscarTransacciones() {
         const dato = document.getElementById("dato").value.toLowerCase();
 
-        const blockchainEndpoint = "http://localhost:3001/blockchain";
+        const blockchainEndpoint = "/blockchain";
 
         fetch(blockchainEndpoint)
           .then((response) => response.json())
@@ -63,17 +134,18 @@
               let tablaResultados = "";
 
               transaccionesCoincidentes.forEach((transaccion, index) => {
-                const colorFila = index % 2 === 0 ? "#ffffff" : "#f2f2f2";
+                const colorFila = index % 2 === 0 ? "#30698C" : "#012E40";
 
                 tablaResultados += `<div class="resultados-container" style="background-color: ${colorFila}">
-                                      <h2>Amount</h2>
+                                      <p>Amount</p>
                                       <p align="right">${transaccion.amount}</p>
-                                      <h2>Sender</h2>
+                                      <p>Sender</p>
                                       <p align="right">${transaccion.sender}</p>
-                                      <h2>Recipient</h2>
+                                      <p>Recipient</p>
                                       <p align="right">${transaccion.recipient}</p>
-                                      <h2>Transaction ID</h2>
+                                      <p>Transaction ID</p>
                                       <p align="right">${transaccion.transactionId}</p>
+                                      <hr>
                                     </div>`;
               });
 
