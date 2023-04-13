@@ -7,7 +7,6 @@ const server = express()
 
 const port = process.argv[2]
 
-// server.use(express.json())
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: false }))
 

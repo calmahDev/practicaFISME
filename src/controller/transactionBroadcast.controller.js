@@ -9,10 +9,10 @@ export const transactionBroadcast = (req, res) => {
   if (global.chain.length === 0) {
     createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)
   }
-  if (!req.body.amount || !req.body.sender || !req.body.recipient) {
+  if (!req.body.motivo || !req.body.sender || !req.body.recipient) {
     return res.status(400).json({ message: 'parameters are missing in /transaction/broadcast' })
   }
-  const newTransaction = createNewTransaction(req.body.amount, req.body.sender, req.body.recipient)
+  const newTransaction = createNewTransaction(req.body.motivo, req.body.sender, req.body.recipient)
   addTransactionToPendingTransactions(newTransaction)
 
   const requestPromises = []

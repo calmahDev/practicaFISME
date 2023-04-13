@@ -38,28 +38,4 @@ export const mine = (req, res) => {
   .then(data => {
     res.redirect('/consensus')
   })
-
-  // DESCOMENTAR ESTA PARTE CUANDO SE DECIDA ENTREGAR UNA RECOMPENSA MINERA
-  // Promise.all(requestPromises)
-  //   .then(data => {
-  //     const requestOptions = {
-  //       uri: currentNodeUrl + '/transaction/broadcast',
-  //       method: 'POST',
-  //       body: {
-  //         amount: 12.5,
-  //         sender: "00",
-  //         recipient: nodeAddress
-  //       },
-  //       json: true
-  //     }
-  //     return requestPromise(requestOptions)
-  //   })
-
-  // DESCOMENTAR ESTA PARTE PARA MOSTRAR MENSAJE CUANDO SE PRUEBE EL ENDPOINT
-  //   .then(data => {
-  //     res.json({
-  //       note: "New block mined & broadcast successfully",
-  //       block: newBlock
-  //     })
-  //   })
 }

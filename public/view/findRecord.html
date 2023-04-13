@@ -86,10 +86,10 @@
     <div id="div-body">
       <nav>
         <ul>
-          <li><a href="/view-all-record">Inicio</a></li>
-          <li><a href="/create-new-record">Acerca de</a></li>
-          <li><a href="/add-new-node">Servicios</a></li>
-          <li><a href="/find-record">Contacto</a></li>
+          <li><a href="/view-all-record">Blockchain</a></li>
+          <li><a href="/create-new-record">Nueno Certificado</a></li>
+          <li><a href="/add-new-node">Agregar Nodo</a></li>
+          <li><a href="/find-record">Buscar Certificado</a></li>
         </ul>
       </nav>
       <h1>Buscar transacciones en la blockchain</h1>
@@ -117,7 +117,7 @@
             data.chain.forEach((bloque) => {
               bloque.transactions.forEach((transaccion) => {
                 if (
-                  transaccion.amount.toLowerCase().includes(dato) ||
+                  transaccion.motivo.toLowerCase().includes(dato) ||
                   transaccion.sender.toLowerCase().includes(dato) ||
                   transaccion.recipient.toLowerCase().includes(dato)
                 ) {
@@ -129,7 +129,7 @@
             if (transaccionesCoincidentes.length === 0) {
               document.getElementById(
                 "tablaResultados"
-              ).innerHTML = `<p>No se encontraron transacciones con "${dato}" en amount, sender o recipient.</p>`;
+              ).innerHTML = `<p>No se encontraron transacciones con "${dato}" en motivo, sender o recipient.</p>`;
             } else {
               let tablaResultados = "";
 
@@ -137,8 +137,8 @@
                 const colorFila = index % 2 === 0 ? "#30698C" : "#012E40";
 
                 tablaResultados += `<div class="resultados-container" style="background-color: ${colorFila}">
-                                      <p>Amount</p>
-                                      <p align="right">${transaccion.amount}</p>
+                                      <p>motivo</p>
+                                      <p align="right">${transaccion.motivo}</p>
                                       <p>Sender</p>
                                       <p align="right">${transaccion.sender}</p>
                                       <p>Recipient</p>

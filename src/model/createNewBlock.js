@@ -14,7 +14,6 @@ export function createNewBlock(nonce, previousBlockHash, hash) {
       previousBlockHash: previousBlockHash
     };
 
-    // Limpiar transacciones pendientes y añadir nuevo bloque a la cadena
     global.chain.push(newBlock);
     global.pendingTransactions = [];
     return newBlock;

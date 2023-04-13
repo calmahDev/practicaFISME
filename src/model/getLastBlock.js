@@ -1,4 +1,3 @@
-// import { chain } from "./blockchain.js";
 import "./blockchain.js"
 
 export const getLastBlock = () =>{
