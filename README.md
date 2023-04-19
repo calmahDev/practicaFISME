@@ -6,8 +6,7 @@ Este proyecto es una implementación básica de una blockchain, construida con J
 
 El proyecto está estructurado de la siguiente manera:
 
-- |_
-_img`: carperta que contiene las visualiciones las vistas.
+- `img`: carperta que contiene las visualiciones las vistas.
   -  `addNewNode.png` : visualicion de la vista addNewNode.hmtl.
   -  `createNewRecord.png` : visualicion de la vista createNewRecord.hmtl.
   -  `findeRecord.png` : visualicion de la vista findeRecord.hmtl.
