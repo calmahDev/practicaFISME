@@ -1,24 +1,31 @@
-import {hashBlock} from "./hashBlock.js"
+import { hashBlock } from "./hashBlock.js";
 
-export const  chainIsValid= (blockchain)=> {
-	if (!Array.isArray(blockchain) || blockchain.length === 0) {
-		throw new Error('parameters are missing in chainIsValid.js');
-	}
+export function chainIsValid(blockchainObj) {
 
-	let validChain = true;
-	for (var i = 1; i < blockchain.length; i++) {
-		const currentBlock = blockchain[i];
-		const prevBlock = blockchain[i - 1];
-		const blockHash = hashBlock(prevBlock['hash'], { transactions: currentBlock['transactions'], index: currentBlock['index'] }, currentBlock['nonce']);
-		if (blockHash.substring(0, 4) !== '0000') validChain = false;
-		if (currentBlock['previousBlockHash'] !== prevBlock['hash']) validChain = false;
-	};
-	const genesisBlock = blockchain[0];
-	const correctNonce = genesisBlock['nonce'] === 100;
-	const correctPreviousBlockHash = genesisBlock['previousBlockHash'] === '0';
-	const correctHash = genesisBlock['hash'] === '0';
-	const correctTransactions = genesisBlock['transactions'].length === 0;
-	if (!correctNonce || !correctPreviousBlockHash || !correctHash || !correctTransactions) validChain = false;
-	return validChain;
-};
+  // Verificar el bloque génesis
+  const genesisBlock = blockchainObj[0];
+  const isGenesisBlockValid =
+    genesisBlock.index === 0 &&
+    genesisBlock.previousBlockHash === "Block Genesis" &&
+    genesisBlock.hash === "Block Genesis" &&
+    genesisBlock.nonce === 1 &&
+    genesisBlock.records.length === 0;
+  if (!isGenesisBlockValid) {
+    // Si el bloque génesis no es válido, la cadena no es válida
+    return false;
+  }
+  // Verificar los bloques siguientes
+  for (let i = 1; i < blockchainObj.length; i++) {
+    const block = blockchainObj[i];
+    const previousBlock = blockchainObj[i - 1];
 
+    // Verificar el índice y el hash previo del bloque actual
+    if (
+      block.index !== previousBlock.index + 1 ||
+      block.previousBlockHash !== previousBlock.hash
+    ) {
+      return false;
+    }
+  }
+  return true;
+}

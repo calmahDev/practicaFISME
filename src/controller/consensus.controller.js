@@ -24,13 +24,13 @@ export const consensus = (req, res) =>{
 		const currentChainLength = global.chain.length;
 		let maxChainLength = currentChainLength;
 		let newLongestChain = null;
-		let newPendingTransactions = null;
+		let newPendingRecords = null;
 
 		blockchains.forEach(blockchain => {
 			if (blockchain.chain.length > maxChainLength) {
 				maxChainLength = blockchain.chain.length;
 				newLongestChain = blockchain.chain;
-				newPendingTransactions = blockchain.pendingTransactions;
+				newPendingRecords = blockchain.pendingRecords;
 			};
 		});
 		if (!newLongestChain || (newLongestChain && !chainIsValid(newLongestChain))) {
@@ -38,7 +38,7 @@ export const consensus = (req, res) =>{
 		}
 		else {
 			bitcoin.chain = newLongestChain;
-			bitcoin.pendingTransactions = newPendingTransactions;
+			bitcoin.pendingRecords = newPendingRecords;
 			res.json({
 				note: 'This chain has been replaced.',
 				chain: bitcoin.chain

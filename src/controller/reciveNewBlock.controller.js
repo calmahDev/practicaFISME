@@ -17,7 +17,7 @@ export const receiveNewBlock = (req, res) => {
 
   if (correctHash && correctIndex) {
     global.chain.push(newBlock)
-    global.pendingTransactions = []
+    global.pendingRecords = []
     res.json({
       note: 'New block received and accepted.',
       newBlock: newBlock

@@ -1,3 +1,3 @@
 
 global.chain = [];
-global.pendingTransactions = [];
+global.pendingRecords = [];

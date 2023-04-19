@@ -27,7 +27,7 @@
       h1{
         color: #A6A6A6;
       }
-      h2, p{
+      h2, p,label{
         color: #F2F2F2;
       }      
       nav {
@@ -94,7 +94,7 @@
       </nav>
 
       <h1>Crear Certificado</h1>
-      <form action="/transaction/broadcast" method="POST">
+      <form action="/record/broadcast" method="POST">
         <label for="sender">Emitido por :</label>
         <input type="text" id="sender" name="sender"><br><br>
         
@@ -108,38 +108,41 @@
       </form>
 
 
-      <ul id="transactions-list"></ul>
+      <ul id="records-list"></ul>
     </div>
 
     <script>
-      const transactionsList = document.getElementById("transactions-list");
+      const recordsList = document.getElementById("records-list");
       fetch("/blockchain")
         .then(response => response.json())
         .then(data => {
-          const transactions = data.chain
+          const records = data.chain
             .slice(Math.max(data.chain.length - 5, 0))
-            .map(block => block.transactions)
+            .map(block => block.records)
             .flat();
-          transactions.forEach(transaction => {
+          records.forEach(record => {
             const listItem = document.createElement("li");
-            const index = transactions.indexOf(transaction);
+            const index = records.indexOf(record);
             const colorFila = index % 2 === 0 ? "#30698C" : "#012E40";
 
             listItem.innerHTML = `<div class="resultados-container" style="background-color: ${colorFila}">
                                       <p>Emitido por:</p>
-                                      <p align="center">${transaction.sender}</p>
+                                      <p align="center">${record.sender}</p>
                                       
                                       <p>Otorgado a:</p>
-                                      <p align="center">${transaction.recipient}</p>
+                                      <p align="center">${record.recipient}</p>
 
                                       <p>A motivo de:</p>
-                                      <p align="center">${transaction.motivo}</p>
+                                      <p align="center">${record.motivo}</p>
+
+                                      <p>Timestamp:</p>
+                                      <p align="center">${record.timestamp}</p>
 
                                       <p>Certificado ID</p>
-                                      <p align="center">${transaction.transactionId}</p>
+                                      <p align="center">${record.recordId}</p>
                                       <hr>
                                     </div>`;
-            transactionsList.appendChild(listItem);
+            recordsList.appendChild(listItem);
           });
         });
     </script>

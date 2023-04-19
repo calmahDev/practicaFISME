@@ -6,9 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "node1": "nodemon --watch dev -e js src/app.js 3333 http://192.168.0.110:3333",
-    "node2": "nodemon --watch dev -e js src/app.js 3332 http://192.168.0.110:3332"
-  },
+    "node1": "nodemon --watch dev -e js src/app.js 3333 http://192.168.0.110:3333"
+    },
   "author": "",
   "license": "ISC",
   "dependencies": {

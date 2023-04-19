@@ -27,7 +27,7 @@
       h1{
         color: #A6A6A6;
       }
-      h2, p{
+      h2, p, label{
         color: #F2F2F2;
       }      
       nav {
@@ -92,55 +92,58 @@
           <li><a href="/find-record">Buscar Certificado</a></li>
         </ul>
       </nav>
-      <h1>Últimas transacciones de la blockchain</h1>
-      <div id="transactions"></div>
+      <h1>Últimas recordes de la blockchain</h1>
+      <div id="records"></div>
       <button id="loadMore">Cargar más</button>
     </div>
     <script>
-      const transactionsDiv = document.getElementById("transactions");
+      const recordsDiv = document.getElementById("records");
       const loadMoreButton = document.getElementById("loadMore");
       let startIndex = 0;
-      const transactionsPerPage = 2;
+      const recordsPerPage = 2;
 
-      function showTransactions(transactions) {
-        transactionsDiv.innerHTML += transactions
+      function showRecords(records) {
+        recordsDiv.innerHTML += records
           .map(
-            (transaction) =>
+            (record) =>
                                      `<p>Emitido por:</p>
-                                      <p align="center">${transaction.sender}</p>
+                                      <p align="center">${record.sender}</p>
                                       
                                       <p>Otorgado a:</p>
-                                      <p align="center">${transaction.recipient}</p>
+                                      <p align="center">${record.recipient}</p>
 
                                       <p>A motivo de:</p>
-                                      <p align="center">${transaction.motivo}</p>
+                                      <p align="center">${record.motivo}</p>
+
+                                      <p>Timestamp:</p>
+                                      <p align="center">${record.timestamp}</p>
 
                                       <p>Certificado ID</p>
-                                      <p align="center">${transaction.transactionId}</p>
+                                      <p align="center">${record.recordId}</p>
                                      <hr>`
           )
           .join("");
       }
 
-      function loadTransactions() {
+      function loadRecords() {
         fetch("/blockchain")
           .then((response) => response.json())
           .then((data) => {
-            const transactions = data.chain
-              .map((block) => block.transactions)
+            const records = data.chain
+              .map((block) => block.records)
               .flat()
-              .slice(startIndex, startIndex + transactionsPerPage);
-            showTransactions(transactions);
-            if (transactions.length < transactionsPerPage) {
+              .slice(startIndex, startIndex + recordsPerPage);
+            showRecords(records);
+            if (records.length < recordsPerPage) {
               loadMoreButton.disabled = true;
             }
-            startIndex += transactionsPerPage;
+            startIndex += recordsPerPage;
           })
           .catch((error) => console.error(error));
       }
 
-      loadTransactions();
-      loadMoreButton.addEventListener("click", loadTransactions);
+      loadRecords();
+      loadMoreButton.addEventListener("click", loadRecords);
     </script>
   </body>
 </html>

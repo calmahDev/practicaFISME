@@ -27,7 +27,7 @@
     h1{
       color: #A6A6A6;
     }
-    h2, p{
+    h2, p, label{
       color: #F2F2F2;
     }      
     nav {
@@ -92,9 +92,9 @@
           <li><a href="/find-record">Buscar Certificado</a></li>
         </ul>
       </nav>
-      <h1>Buscar transacciones en la blockchain</h1>
+      <h1>Buscar recordes en la blockchain</h1>
       <p>
-        Introduce un dato incompleto para buscar transacciones:
+        Introduce un dato incompleto para buscar recordes:
         <br />
         Dato incompleto:
         <input type="text" id="dato" />
@@ -112,39 +112,42 @@
         fetch(blockchainEndpoint)
           .then((response) => response.json())
           .then((data) => {
-            const transaccionesCoincidentes = [];
+            const recordesCoincidentes = [];
 
             data.chain.forEach((bloque) => {
-              bloque.transactions.forEach((transaccion) => {
+              bloque.records.forEach((record) => {
                 if (
-                  transaccion.motivo.toLowerCase().includes(dato) ||
-                  transaccion.sender.toLowerCase().includes(dato) ||
-                  transaccion.recipient.toLowerCase().includes(dato)
+                  record.motivo.toLowerCase().includes(dato) ||
+                  record.sender.toLowerCase().includes(dato) ||
+                  record.recipient.toLowerCase().includes(dato)
                 ) {
-                  transaccionesCoincidentes.push(transaccion);
+                  recordesCoincidentes.push(record);
                 }
               });
             });
 
-            if (transaccionesCoincidentes.length === 0) {
+            if (recordesCoincidentes.length === 0) {
               document.getElementById(
                 "tablaResultados"
-              ).innerHTML = `<p>No se encontraron transacciones con "${dato}" en motivo, sender o recipient.</p>`;
+              ).innerHTML = `<p>No se encontraron recordes con "${dato}" en motivo, sender o recipient.</p>`;
             } else {
               let tablaResultados = "";
 
-              transaccionesCoincidentes.forEach((transaccion, index) => {
+              recordesCoincidentes.forEach((record, index) => {
                 const colorFila = index % 2 === 0 ? "#30698C" : "#012E40";
 
                 tablaResultados += `<div class="resultados-container" style="background-color: ${colorFila}">
                                       <p>motivo</p>
-                                      <p align="right">${transaccion.motivo}</p>
+                                      <p align="center">${record.motivo}</p>
                                       <p>Sender</p>
-                                      <p align="right">${transaccion.sender}</p>
+                                      <p align="center">${record.sender}</p>
                                       <p>Recipient</p>
-                                      <p align="right">${transaccion.recipient}</p>
-                                      <p>Transaction ID</p>
-                                      <p align="right">${transaccion.transactionId}</p>
+                                      <p align="center">${record.recipient}</p>
+                                      <p>Timestamp:</p>
+                                      <p align="center">${record.timestamp}</p>
+
+                                      <p>Record ID</p>
+                                      <p align="center">${record.recordId}</p>
                                       <hr>
                                     </div>`;
               });

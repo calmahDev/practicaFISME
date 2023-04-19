@@ -8,13 +8,13 @@ export function createNewBlock(nonce, previousBlockHash, hash) {
     const newBlock = {
       index: global.chain.length,
       timestamp: Date.now(),
-      transactions: global.pendingTransactions,
+      records: global.pendingRecords,
       nonce: nonce,
       hash: hash,
       previousBlockHash: previousBlockHash
     };
 
     global.chain.push(newBlock);
-    global.pendingTransactions = [];
+    global.pendingRecords = [];
     return newBlock;
 }

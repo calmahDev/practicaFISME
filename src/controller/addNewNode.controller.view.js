@@ -15,5 +15,5 @@ export const ip = (req, res)=> {
     });
     const ipAddress = interfaces[interfaceName].find(({ family, internal }) => family === 'IPv4' && !internal).address;
   
-    res.json(`http://${ipAddress}:3332`);
+    res.json(`http://${ipAddress}:3333`);
   }

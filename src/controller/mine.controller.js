@@ -15,7 +15,7 @@ export const mine = (req, res) => {
   const lastBlock = getLastBlock()
   const previousBlockHash = lastBlock['hash']
   const currentBlockData = {
-    transactions: global.pendingTransactions,
+    records: global.pendingRecords,
     index: lastBlock['index'] + 1
   }
   const nonce = proofOfWork(previousBlockHash, currentBlockData)

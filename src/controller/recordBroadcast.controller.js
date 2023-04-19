@@ -1,26 +1,26 @@
 import requestPromise from "request-promise"
 import { networkNodes } from "../app.js"
-import { addTransactionToPendingTransactions } from "../model/addTransactionToPendingTransactions.js"
-import { createNewTransaction } from "../model/createNewTransaction.js"
+import { addRecordToPendingRecords } from "../model/addRecordToPendingRecords.js"
+import { createNewRecord } from "../model/createNewRecord.js"
 import { nonceGenesis,hashGenesis,previousHashGenesis } from "../model/blockGenesis.js"
 import { createNewBlock } from "../model/createNewBlock.js"
 
-export const transactionBroadcast = (req, res) => {
+export const recordBroadcast = (req, res) => {
   if (global.chain.length === 0) {
     createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)
   }
   if (!req.body.motivo || !req.body.sender || !req.body.recipient) {
-    return res.status(400).json({ message: 'parameters are missing in /transaction/broadcast' })
+    return res.status(400).json({ message: 'parameters are missing in /record/broadcast' })
   }
-  const newTransaction = createNewTransaction(req.body.motivo, req.body.sender, req.body.recipient)
-  addTransactionToPendingTransactions(newTransaction)
+  const newRecord = createNewRecord(req.body.motivo, req.body.sender, req.body.recipient)
+  addRecordToPendingRecords(newRecord)
 
   const requestPromises = []
   networkNodes.forEach(networkNodeUrl => {
     const requestOptions = {
-      uri: networkNodeUrl + '/transaction',
+      uri: networkNodeUrl + '/record',
       method: 'POST',
-      body: newTransaction,
+      body: newRecord,
       json: true
     }
     requestPromises.push(requestPromise(requestOptions))

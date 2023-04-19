@@ -9,7 +9,7 @@ export const blockchain = (req, res) => {
   }
   const FISME = {
     chain: global.chain,
-    pendingTransactions: global.pendingTransactions,
+    pendingRecords: global.pendingRecords,
     currentNodeUrl: currentNodeUrl,
     networkNodes: networkNodes
   }
