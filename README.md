@@ -32,16 +32,16 @@ El proyecto está estructurado de la siguiente manera:
     - `registerAndBroadcastNode.controller.js`: controlador para registrar y difundir un nuevo nodo en la red.
     - `registerNode.controller.js`: controlador para registrar un nuevo nodo en la red.
     - `registerNodesBulk.controller.js`: controlador para registrar varios nodos a la vez en la red.
-    - `record.controller.js`: controlador para crear una nueva transacción en la blockchain.
-    - `recordBroadcast.controller.js`: controlador para difundir una nueva transacción en la red.
+    - `record.controller.js`: controlador para crear un nuevo registro en la blockchain.
+    - `recordBroadcast.controller.js`: controlador para difundir una nuevo registro en la red.
     - `viewAllRecord.controller.view.js`: controlador para ver todos los registros almacenados en la blockchain.
   - `model`: carpeta que contiene los modelos de la aplicación.
-    - `addRecordToPendingRecord.js` modelo para almacenar las transacciones pendientes en la cadena de bloques.
+    - `addRecordToPendingRecord.js` modelo para almacenar las Records pendientes en la cadena de bloques.
     - `blockchain.js`: modelo de la blockchain con las variables locales.
     - `blockGenesis.js`: modelo del bloque génesis de la blockchain.
     - `chainIsValid.js`: modelo que verifica si una cadena de bloques es válida.
     - `createNewBlock.js`: modelo para crear un nuevo bloque en la cadena de bloques.
-    - `createNewRecord.js`: modelo para crear una nueva transacción en la cadena de bloques.
+    - `createNewRecord.js`: modelo para crear una nuevo registro en la cadena de bloques.
     - `getLastBlock.js`: modelo para obtener el último bloque de la cadena de bloques.
     - `hashBlock.js`: modelo para calcular el hash de un bloque de la cadena de bloques.
     - `prooOfWork.js`: modelo para calcular la prueba de trabajo necesaria para añadir un nuevo bloque a la cadena de bloques.
@@ -50,7 +50,7 @@ El proyecto está estructurado de la siguiente manera:
     - `blockchain.routes.js`: archivo que define las rutas relacionadas con la cadena de bloques.
     - `views.routes.js`: archivo que define las rutas relacionadas con las vistas HTML de la aplicación.
 - `test`: carpeta que contiene las pruebas unitarias de la aplicación.
-    - `addRecordToPendingRecord.test.js:` Prueba para comprobar que se puede agregar una transacción a las transacciones pendientes correctamente.
+    - `addRecordToPendingRecord.test.js:` Prueba para comprobar que se puede agregar una regitro a las Records pendientes correctamente.
     - `chainIsValid.test.js:` Prueba para comprobar que la cadena de bloques es válida y no ha sido alterada.
     - `createNewBlock.test.js:` Prueba para comprobar que se puede crear un nuevo bloque correctamente.
     - `getLastBlock.test.js:` Prueba para comprobar que se puede obtener el último bloque de la cadena correctamente.

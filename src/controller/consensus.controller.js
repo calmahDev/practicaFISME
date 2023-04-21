@@ -3,6 +3,7 @@ import {chainIsValid} from "../model/chainIsValid.js"
 import requestPromise from "request-promise";
 import { previousHashGenesis, hashGenesis, nonceGenesis } from "../model/blockGenesis.js"
 import "../model/blockchain.js"
+import { createNewBlock } from "../model/createNewBlock.js";
 
 export const consensus = (req, res) =>{
 	if (global.chain.length === 0) {
@@ -15,10 +16,8 @@ export const consensus = (req, res) =>{
 			method: 'GET',
 			json: true
 		};
-
 		requestPromises.push(requestPromise  (requestOptions));
 	});
-
 	Promise.all(requestPromises)
 	.then(blockchains => {
 		const currentChainLength = global.chain.length;
@@ -37,11 +36,11 @@ export const consensus = (req, res) =>{
 			res.redirect('/create-new-record');
 		}
 		else {
-			bitcoin.chain = newLongestChain;
-			bitcoin.pendingRecords = newPendingRecords;
+			global.chain = newLongestChain;
+			global.pendingRecords = newPendingRecords;
 			res.json({
 				note: 'This chain has been replaced.',
-				chain: bitcoin.chain
+				chain: global.chain
 			});
 		}
 	});

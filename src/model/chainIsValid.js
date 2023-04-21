@@ -1,4 +1,3 @@
-import { hashBlock } from "./hashBlock.js";
 
 export function chainIsValid(blockchainObj) {
 

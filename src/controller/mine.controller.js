@@ -1,5 +1,5 @@
 import requestPromise from "request-promise"
-import { currentNodeUrl, networkNodes, nodeAddress } from "../app.js"
+import {networkNodes } from "../app.js"
 import { createNewBlock } from "../model/createNewBlock.js"
 import { getLastBlock } from "../model/getLastBlock.js"
 import { hashBlock } from "../model/hashBlock.js"

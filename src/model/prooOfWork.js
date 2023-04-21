@@ -1,6 +1,5 @@
 import { hashBlock } from "./hashBlock.js"
 
-const difficulty = 4;
 
 export function proofOfWork(previousBlockHash, currentBlockData) {
 	if (!previousBlockHash||!currentBlockData) {

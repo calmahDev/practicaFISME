@@ -99,12 +99,12 @@
         Dato incompleto:
         <input type="text" id="dato" />
         <br />
-        <button onclick="buscarTransacciones()">Buscar</button>
+        <button onclick="buscarRecords()">Buscar</button>
       </p>
       <div id="tablaResultados"></div>
     </div>
     <script>
-      function buscarTransacciones() {
+      function buscarRecords() {
         const dato = document.getElementById("dato").value.toLowerCase();
 
         const blockchainEndpoint = "/blockchain";
@@ -118,8 +118,8 @@
               bloque.records.forEach((record) => {
                 if (
                   record.motivo.toLowerCase().includes(dato) ||
-                  record.sender.toLowerCase().includes(dato) ||
-                  record.recipient.toLowerCase().includes(dato)
+                  record.remitente.toLowerCase().includes(dato) ||
+                  record.destinatario.toLowerCase().includes(dato)
                 ) {
                   recordesCoincidentes.push(record);
                 }
@@ -129,7 +129,7 @@
             if (recordesCoincidentes.length === 0) {
               document.getElementById(
                 "tablaResultados"
-              ).innerHTML = `<p>No se encontraron recordes con "${dato}" en motivo, sender o recipient.</p>`;
+              ).innerHTML = `<p>No se encontraron recordes con "${dato}" en motivo, remitente o destinatario.</p>`;
             } else {
               let tablaResultados = "";
 
@@ -140,9 +140,9 @@
                                       <p>motivo</p>
                                       <p align="center">${record.motivo}</p>
                                       <p>Sender</p>
-                                      <p align="center">${record.sender}</p>
+                                      <p align="center">${record.remitente}</p>
                                       <p>Recipient</p>
-                                      <p align="center">${record.recipient}</p>
+                                      <p align="center">${record.destinatario}</p>
                                       <p>Timestamp:</p>
                                       <p align="center">${record.timestamp}</p>
 

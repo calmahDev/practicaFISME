@@ -5,17 +5,23 @@ describe("createNewRecord", () => {
     expect(() => {
       createNewRecord();
     }).toThrow("parameters are missing in crateNewRecord.js");
+    expect(() => {
+      createNewRecord("Por realizar las practicas profesionales en la facultadad de ingenieria de sistemas y mecacniaca electrica");
+    }).toThrow("parameters are missing in crateNewRecord.js");
+    expect(() => {
+      createNewRecord("Por realizar las practicas profesionales en la facultadad de ingenieria de sistemas y mecacniaca electrica","FISME");
+    }).toThrow("parameters are missing in crateNewRecord.js");
   });
 
   it("debe crear un nuevo registro con los parámetros proporcionados y un identificador único", () => {
     const motivo = "Motivo de prueba";
-    const sender = "Remitente de prueba";
-    const recipient = "Destinatario de prueba";
-    const newRecord = createNewRecord(motivo, sender, recipient);
+    const remitente = "Remitente de prueba";
+    const destinatario = "Destinatario de prueba";
+    const newRecord = createNewRecord(motivo, remitente, destinatario);
     expect(newRecord).toEqual(expect.objectContaining({
       motivo: motivo,
-      sender: sender,
-      recipient: recipient
+      remitente: remitente,
+      destinatario: destinatario
     }));
     expect(newRecord.timestamp).toBeDefined();
     expect(newRecord.recordId).toBeDefined();

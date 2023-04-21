@@ -9,10 +9,13 @@ export const recordBroadcast = (req, res) => {
   if (global.chain.length === 0) {
     createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)
   }
-  if (!req.body.motivo || !req.body.sender || !req.body.recipient) {
+  if (!req.body.motivo || !req.body.remitente || !req.body.destinatario) {
     return res.status(400).json({ message: 'parameters are missing in /record/broadcast' })
   }
-  const newRecord = createNewRecord(req.body.motivo, req.body.sender, req.body.recipient)
+  const motivo =req.body.motivo
+  const remitente = req.body.remitente 
+  const  destinatario =req.body.destinatario
+  const newRecord = createNewRecord(motivo,remitente,destinatario)
   addRecordToPendingRecords(newRecord)
 
   const requestPromises = []

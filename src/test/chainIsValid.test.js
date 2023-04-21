@@ -15,8 +15,8 @@ describe('chainIsValid', () => {
       hash: 'abc123',
       nonce: 2,
       records: [
-        { sender: 'Alice', recipient: 'Bob', amount: 10 },
-        { sender: 'Bob', recipient: 'Charlie', amount: 5 }
+        { remitente: 'Alice', destinatario: 'Bob', amount: 10 },
+        { remitente: 'Bob', destinatario: 'Charlie', amount: 5 }
       ]
     }
   ];
@@ -35,8 +35,8 @@ describe('chainIsValid', () => {
       hash: 'abc123',
       nonce: 2,
       records: [
-        { sender: 'Alice', recipient: 'Bob', amount: 10 },
-        { sender: 'Bob', recipient: 'Charlie', amount: 5 }
+        { remitente: 'Alice', destinatario: 'Bob', amount: 10 },
+        { remitente: 'Bob', destinatario: 'Charlie', amount: 5 }
       ]
     }
   ];
@@ -48,8 +48,8 @@ describe('chainIsValid', () => {
       hash: 'abc123',
       nonce: 2,
       records: [
-        { sender: 'Alice', recipient: 'Bob', amount: 10 },
-        { sender: 'Bob', recipient: 'Charlie', amount: 5 }
+        { remitente: 'Alice', destinatario: 'Bob', amount: 10 },
+        { remitente: 'Bob', destinatario: 'Charlie', amount: 5 }
       ]
     }
   ];
@@ -68,8 +68,8 @@ describe('chainIsValid', () => {
       hash: 'abc123',
       nonce: 2,
       records: [
-        { sender: 'Alice', recipient: 'Bob', amount: 10 },
-        { sender: 'Bob', recipient: 'Charlie',    amount: 5 }
+        { remitente: 'Alice', destinatario: 'Bob', amount: 10 },
+        { remitente: 'Bob', destinatario: 'Charlie',    amount: 5 }
     ]
   }
     ];
@@ -88,8 +88,8 @@ describe('chainIsValid', () => {
     hash: 'abc123',
     nonce: 2,
     records: [
-    { sender: 'Alice', recipient: 'Bob', amount: 10 },
-    { sender: 'Bob', recipient: 'Charlie', amount: 5 }
+    { remitente: 'Alice', destinatario: 'Bob', amount: 10 },
+    { remitente: 'Bob', destinatario: 'Charlie', amount: 5 }
     ]
     }
     ];
@@ -108,8 +108,8 @@ describe('chainIsValid', () => {
     hash: 'abc123',
     nonce: 2,
     records: [
-    { sender: 'Alice', recipient: 'Bob', amount: 10 },
-    { sender: 'Bob', recipient: 'Charlie', amount: 5 }
+    { remitente: 'Alice', destinatario: 'Bob', amount: 10 },
+    { remitente: 'Bob', destinatario: 'Charlie', amount: 5 }
     ]
     }
     ];
@@ -120,7 +120,7 @@ describe('chainIsValid', () => {
     previousBlockHash: 'Block Genesis',
     hash: 'Block Genesis',
     nonce: 1,
-    records: [{ sender: 'Alice', recipient: 'Bob', amount: 10 }]
+    records: [{ remitente: 'Alice', destinatario: 'Bob', amount: 10 }]
     },
     {
     index: 1,
@@ -128,8 +128,8 @@ describe('chainIsValid', () => {
     hash: 'abc123',
     nonce: 2,
     records: [
-    { sender: 'Alice', recipient: 'Bob', amount: 10 },
-    { sender: 'Bob', recipient: 'Charlie', amount: 5 }
+    { remitente: 'Alice', destinatario: 'Bob', amount: 10 },
+    { remitente: 'Bob', destinatario: 'Charlie', amount: 5 }
     ]
     }
     ];

@@ -1,4 +1,3 @@
-import { nonceGenesis, previousHashGenesis, hashGenesis } from './blockGenesis.js';
 import './blockchain.js';
 
 export function createNewBlock(nonce, previousBlockHash, hash) {

@@ -95,11 +95,11 @@
 
       <h1>Crear Certificado</h1>
       <form action="/record/broadcast" method="POST">
-        <label for="sender">Emitido por :</label>
-        <input type="text" id="sender" name="sender"><br><br>
+        <label for="remitente">Emitido por :</label>
+        <input type="text" id="remitente" name="remitente"><br><br>
         
-        <label for="recipient">Otorgado a :</label>
-        <input type="text" id="recipient" name="recipient"><br><br>
+        <label for="destinatario">Otorgado a :</label>
+        <input type="text" id="destinatario" name="destinatario"><br><br>
 
         <label for="motivo">A motivo de :</label><br>
         <textarea id="motivo" name="motivo" style="width: 100%; height: 100px;"></textarea><br><br>
@@ -108,11 +108,11 @@
       </form>
 
 
-      <ul id="records-list"></ul>
+      <ul id="result-container"></ul>
     </div>
 
     <script>
-      const recordsList = document.getElementById("records-list");
+      const recordsList = document.getElementById("result-container");
       fetch("/blockchain")
         .then(response => response.json())
         .then(data => {
@@ -127,10 +127,10 @@
 
             listItem.innerHTML = `<div class="resultados-container" style="background-color: ${colorFila}">
                                       <p>Emitido por:</p>
-                                      <p align="center">${record.sender}</p>
+                                      <p align="center">${record.remitente}</p>
                                       
                                       <p>Otorgado a:</p>
-                                      <p align="center">${record.recipient}</p>
+                                      <p align="center">${record.destinatario}</p>
 
                                       <p>A motivo de:</p>
                                       <p align="center">${record.motivo}</p>

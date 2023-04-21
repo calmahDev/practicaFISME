@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Crear Certificado</title>
+    <title>viewAllRecord</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       body{
@@ -107,10 +107,10 @@
           .map(
             (record) =>
                                      `<p>Emitido por:</p>
-                                      <p align="center">${record.sender}</p>
+                                      <p align="center">${record.remitente}</p>
                                       
                                       <p>Otorgado a:</p>
-                                      <p align="center">${record.recipient}</p>
+                                      <p align="center">${record.destinatario}</p>
 
                                       <p>A motivo de:</p>
                                       <p align="center">${record.motivo}</p>

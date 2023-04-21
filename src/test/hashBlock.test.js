@@ -3,7 +3,7 @@ import sha256 from 'sha256';
 
 describe('hashBlock', () => {
   const previousBlockHash = '0000000000000000000000000000000000000000000000000000000000000000';
-  const currentBlockData = { sender: 'Alice', recipient: 'Bob', amount: 100 };
+  const currentBlockData = { remitente: 'Alice', destinatario: 'Bob', amount: 100 };
   const nonce = 12345;
 
   it('should return a hash string', () => {

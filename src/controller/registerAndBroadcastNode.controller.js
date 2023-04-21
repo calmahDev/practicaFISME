@@ -10,11 +10,10 @@ export const registerNodeAndBroadcastNode = (req, res) => {
   if (global.chain.length === 0) {
     createNewBlock(nonceGenesis, previousHashGenesis, hashGenesis)
   }
-  
-
-  const newNodeUrl = req.body.newNodeUrl
-  if (networkNodes.indexOf(newNodeUrl) == -1) networkNodes.push(newNodeUrl)
-
+    const newNodeUrl = req.body.newNodeUrl
+  if (networkNodes.indexOf(newNodeUrl) == -1) {
+    networkNodes.push(newNodeUrl)
+  }
   const regNodesPromises = []
   networkNodes.forEach(networkNodeUrl => {
       const requestOptions = {
@@ -23,12 +22,8 @@ export const registerNodeAndBroadcastNode = (req, res) => {
         body: { newNodeUrl: newNodeUrl },
         json: true
       }
-
       regNodesPromises.push(requestPromise(requestOptions))
-
-
   })
-
   Promise.all(regNodesPromises)
     .then(data => {
       const bulkRegisterOptions = {

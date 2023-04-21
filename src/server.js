@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from "body-parser"
-import routerViews from "../routes/views.routes.js"
-import routerBlock from '../routes/blockchain.routes.js'
+import routerViews from "./routes/views.routes.js"
+import routerBlock from './routes/blockchain.routes.js'
 
 const server = express()
 

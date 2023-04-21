@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import server from "./model/server.js"
+import server from "./server.js"
 
 export const currentNodeUrl = process.argv[3]
 export const networkNodes = []
