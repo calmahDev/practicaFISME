@@ -1,4 +1,4 @@
-import { proofOfWork } from '../model/prooOfWork';
+import { proofOfWork } from '../model/prooOfWork.js';
 import { hashBlock } from '../model/hashBlock.js';
 
 describe('proofOfWork', () => {
